@@ -7,6 +7,7 @@ class Product:
 class Promotion:
     def __int__(self):
         pass
-
-    @property
-
+    
+    def sayHellp(self):
+        print("I am fxx")
+            
