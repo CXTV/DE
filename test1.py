@@ -11,4 +11,3 @@ class Promotion:
     def sayHellp(self):
         print("I am fxx!!!")
 
-print("test_saperatetest_saperatetest_saperatetest_saperate")

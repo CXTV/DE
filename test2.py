@@ -1,7 +1,0 @@
-print("1111111111111dfdfdfdf")
-print("222222222222wwwwwwwwwwwdfdfww")
-print("333333333333")
-print("444444444444")
-print("5555555555555")
-print("main_new_add_main_new_addmain_new_addmain_new_addmain_new_addmain_new_add")
-print("test_saperate222222222222222222222test_saperatetest_saperatetest_saperate")
