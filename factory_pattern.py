@@ -3,15 +3,15 @@ from abc import ABC,abstractmethod
 
 class Payment(ABC):   
     @abstractmethod
-    def pay(self):
+    def _pay(self):
         pass
 
 class AliPay(Payment):
-    def pay(self):
+    def _pay(self):
         print("Paying by Ali...")
 
 class PaypalPay(Payment):
-    def pay(self):
+    def _pay(self):
         print("Pay by Paypal...")
 
 #版本一：普通工厂
@@ -30,7 +30,7 @@ class OnlinePay:
         self._pay_method = pay_method
 
     def pay_online(self):
-        self._pay_method.pay()
+        self._pay_method._pay()
         return
     
 alipay =AliPay()
