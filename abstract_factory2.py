@@ -8,12 +8,12 @@ class Payment(ABC):
 
 
 class AliPay(Payment):
-    def _pay(self):
+    def __pay(self):
         print("Paying by Ali...")
 
 
 class PaypalPay(Payment):
-    def _pay(self):
+    def __pay(self):
         print("Pay by Paypal...")
 
 
@@ -34,4 +34,4 @@ class PaypalPayFacotry(PaymentFoctory):
 
 ali_pay_factory = AlipayFacotry()
 ali_pay = ali_pay_factory.create_payment()
-ali_pay._pay()
+ali_pay.__pay()
