@@ -18,12 +18,6 @@ class ZhongGuoBankPay:
         print("pay by ZhongGuo...")
 
 
-
-###简易版本使用多继承完成
-# class NewBankPay(Payment,BankPay):
-#     def pay(self):
-#         self.cost()
-
 class PaymentAdapter(Payment):
     def __init__(self,payment:Payment) -> None:
         self._payment = payment
