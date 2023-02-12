@@ -1,37 +1,13 @@
-from abc import ABC,abstractmethod
+import re
 
+string = "dfdf('':46%%^)"
 
-class Payment(ABC):   
-    @abstractmethod
-    def _pay(self):
-        pass
+# 使用正则表达式提取数字
+numbers = re.findall(r'(\d+)', string)
 
+# 转换为整数类型
+numbers = [int(number) for number in numbers]
 
-class AliPay(Payment):
-    def __pay(self):
-        print("Paying by Ali...")
-
-
-class PaypalPay(Payment):
-    def __pay(self):
-        print("Pay by Paypal...")
-
-
-class PaymentFoctory(ABC):
-    @abstractmethod
-    def create_payment(self):
-        pass
-
-class AlipayFacotry(PaymentFoctory):
-    def create_payment(self):
-        return AliPay()
-
-class PaypalPayFacotry(PaymentFoctory):
-    def create_payment(self):
-        return PaypalPay()
-
-
-
-ali_pay_factory = AlipayFacotry()
-ali_pay = ali_pay_factory.create_payment()
-ali_pay.__pay()
+# 访问第一个数字
+number = numbers[0]
+print(number)
