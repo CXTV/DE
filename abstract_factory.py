@@ -43,11 +43,15 @@ class BankPay(PayMethod):
     def pay(self):
         print("Paying by Bank...")
         self._pay_method._pay()
-        return
+#         return
+
     
-alipay =AliPay()
-pay_online = OnlinePay(alipay)
-pay_Bank = BankPay(alipay)
-pay_online.pay()
-pay_Bank.pay()
+# alipay =AliPay()
+# pay_online = OnlinePay(alipay)
+# pay_Bank = BankPay(alipay)
+# pay_online.pay()
+# pay_Bank.pay()
+
+import sys
+print(sys.path)
 
