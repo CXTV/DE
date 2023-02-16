@@ -22,7 +22,6 @@ class NewBankPay(Payment,Bank):
     def pay(self):
         self.cost()
 
-
 class Check_payment:
     def __init__(self,payment:Payment) -> None:
         self.__payment = payment
@@ -42,11 +41,5 @@ class Check_payment:
             print("Something wrong with the payment.")
 
 ali_pay = Alipay()
-
 new_bank_pay = NewBankPay()
-
 Check_payment(new_bank_pay)
-
-
-
-
