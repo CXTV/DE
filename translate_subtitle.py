@@ -1,5 +1,6 @@
 #coding:utf-8
 
+import os
 import re
 import urllib.request
 import urllib.parse
@@ -8,6 +9,8 @@ import time
 import html
 from urllib import parse
 import requests
+import time
+import random
 
 def parse_srt_file(filename):
     with open(filename, 'r') as f:
@@ -15,9 +18,7 @@ def parse_srt_file(filename):
     
     # 将字幕按时间码和文本内容分割
     sections = re.split(r'\n\s*\n', data)
-    
     subtitles = []
-    
     for section in sections:
         # 获取时间码和文本内容
         match = re.match(r'(\d+)\n(\d+:\d+:\d+,\d+)\s*-->\s*(\d+:\d+:\d+,\d+)\s*\n(.*)', section, re.DOTALL)
@@ -55,10 +56,9 @@ def translation_youdao(content):
             return target
 
 
-GOOGLE_TRANSLATE_URL = 'http://translate.google.com/m?q=%s&tl=%s&sl=%s'
 
 def translate_google(text, to_language="auto", text_language="auto"):
-
+    GOOGLE_TRANSLATE_URL = 'http://translate.google.com/m?q=%s&tl=%s&sl=%s'
     text = parse.quote(text)
     url = GOOGLE_TRANSLATE_URL % (text,to_language,text_language)
     response = requests.get(url)
@@ -67,13 +67,7 @@ def translate_google(text, to_language="auto", text_language="auto"):
     result = re.findall(expr, data)
     if (len(result) == 0):
         return ""
-
     return html.unescape(result[0])
-
-
-# print(translate("你吃饭了么?", "en","zh-CN")) #汉语转英语
-# print(translate("你吃饭了么？", "ja","zh-CN")) #汉语转日语
-# print(translate("about your situation", "zh-CN","en")) #英语转汉语
 
 
 def translate_subtitles_yd(subtitles):   
@@ -82,15 +76,21 @@ def translate_subtitles_yd(subtitles):
         trans = translation_youdao(text).get("translateResult",[])[0][0].get('tgt','')
         print(trans)
         subtitle['translation'] =trans
-
     return subtitles
 
 def translate_subtitles_gl(subtitles):   
     for subtitle in subtitles:
+        
         text = subtitle['text']
-        trans =translate_google(text, "zh-CN","en")
-        print(trans)
-        subtitle['translation'] =trans
+        print(text)
+        # trans =translate_google(text, "zh-CN","en")
+        # print(trans)
+        # subtitle['translation'] =trans
+        # rdt = random.randint(0,1)
+        # if rdt==0:
+        #     rdt= 0.5
+        # time.sleep(rdt)
+
 
     return subtitles
 
@@ -99,14 +99,70 @@ def write_srt_file(subtitles, filename):
         for subtitle in subtitles:
             f.write(f"{subtitle['index']}\n")
             f.write(f"{subtitle['start_time']} --> {subtitle['end_time']}\n")
-            f.write(f"{subtitle['text']}\n")
-            f.write(f"{subtitle['translation']}\n\n")
+            f.write(f"{subtitle['text']}\n") ##enlish
+            f.write(f"{subtitle['translation']}\n\n") ##chinese
+
+
+def read_srt_files(folder):
+    srt_files = glob.glob(os.path.join(folder, '*.srt'))
+    subtitles = []
+
+    for file in srt_files:
+        with open(file, 'r', encoding='utf-8') as f:
+            data = f.read()
+
+        sections = data.split('\n\n')
+
+        for section in sections:
+            lines = section.strip().split('\n')
+
+            index = int(lines[0])
+            start_time, end_time = lines[1].split(' --> ')
+            text = '\n'.join(lines[2:])
+
+            subtitles.append({
+                'file': file,
+                'index': index,
+                'start_time': start_time,
+                'end_time': end_time,
+                'text': text,
+            })
+
+    return subtitles
+
+
+
+
 
 if __name__ == '__main__':
     # 读取srt文件
-    subtitles = parse_srt_file('1.srt')
-    # # 翻译英文字幕
-    # subtitles = translate_subtitles_yd(subtitles)
-    subtitles = translate_subtitles_gl(subtitles)
-    ##写入中英双语字幕
-    write_srt_file(subtitles, '3.srt')
+
+    # folder_path = r"F:\Downloads\microsoft-azure-database-and-analytics\05 -  Azure SQL Data Warehouse"
+    folder_path = r"F:\Downloads\microsoft-azure-database-and-analytics\04 -   Azure SQL Database"
+
+    srt_files_en = [os.path.join(root, file) 
+                for root, dirs, files in os.walk(folder_path) 
+                for file in files 
+                if file.endswith('_en.srt')]
+
+    srt_files_cn = [os.path.join(root, file) 
+                for root, dirs, files in os.walk(folder_path) 
+                for file in files 
+                if file.endswith('_cn.srt')]
+
+    fail_files =[]
+
+    left_join = sorted(set(srt_files_en)-set(srt_files_cn))
+
+    for i in left_join:
+        try:
+            print(i)
+            subtitles = parse_srt_file(i)
+            # # # 翻译英文字幕
+            subtitles = translate_subtitles_gl(subtitles)
+            # ##写入中英双语字幕
+            # write_srt_file(subtitles, i.replace("_en","_cn"))
+        except:
+            print("翻译失败")
+            fail_files.append(i)
+

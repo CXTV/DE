@@ -18,6 +18,6 @@ def translate(text, to_language="auto", text_language="auto"):
 
     return html.unescape(result[0])
 
-print(translate("你吃饭了么?", "en","zh-CN")) #汉语转英语
-print(translate("你吃饭了么？", "ja","zh-CN")) #汉语转日语
-print(translate("about your situation", "zh-CN","en")) #英语转汉语
+vowels = ['e', 'a', 'u', 'o', 'i']
+
+print(sorted(vowels))
