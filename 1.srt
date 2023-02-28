@@ -1,0 +1,12 @@
+1
+00:00:00,840 --> 00:00:02,520
+Hello, welcome, everyone.
+
+2
+00:00:02,790 --> 00:00:11,280
+My name is Ishant Kirk and I am very happy to add this new module on Microsoft Agios second database
+
+3
+00:00:11,280 --> 00:00:19,800
+in my course and your second database is Microsoft Main, a relational database offering in the cloud.
+

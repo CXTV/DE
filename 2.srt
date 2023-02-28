@@ -1,0 +1,15 @@
+1
+00:00:00,840 --> 00:00:02,520
+Hello, welcome, everyone.
+你好,欢迎,每一个人。
+
+2
+00:00:02,790 --> 00:00:11,280
+My name is Ishant Kirk and I am very happy to add this new module on Microsoft Agios second database
+我的名字叫Ishant柯克和我很高兴加入这个新模块在微软贴水的第二个数据库
+
+3
+00:00:11,280 --> 00:00:19,800
+in my course and your second database is Microsoft Main, a relational database offering in the cloud.
+在我的课程和第二个微软主要数据库,关系数据库提供的云。
+
