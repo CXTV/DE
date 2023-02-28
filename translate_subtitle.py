@@ -83,13 +83,13 @@ def translate_subtitles_gl(subtitles):
         
         text = subtitle['text']
         print(text)
-        # trans =translate_google(text, "zh-CN","en")
-        # print(trans)
-        # subtitle['translation'] =trans
-        # rdt = random.randint(0,1)
-        # if rdt==0:
-        #     rdt= 0.5
-        # time.sleep(rdt)
+        trans =translate_google(text, "zh-CN","en")
+        print(trans)
+        subtitle['translation'] =trans
+        rdt = random.randint(0,1)
+        if rdt==0:
+            rdt= 0.5
+        time.sleep(rdt)
 
 
     return subtitles
