@@ -11,6 +11,8 @@ from urllib import parse
 import requests
 import time
 import random
+from tqdm import tqdm
+
 
 def parse_srt_file(filename):
     with open(filename, 'r') as f:
@@ -78,20 +80,20 @@ def translate_subtitles_yd(subtitles):
         subtitle['translation'] =trans
     return subtitles
 
-def translate_subtitles_gl(subtitles):   
-    for subtitle in subtitles:
-        
-        text = subtitle['text']
-        print(text)
-        trans =translate_google(text, "zh-CN","en")
-        print(trans)
-        subtitle['translation'] =trans
-        rdt = random.randint(0,1)
-        if rdt==0:
-            rdt= 0.5
-        time.sleep(rdt)
 
-
+def translate_subtitles_gl(subtitles):
+    grouped_list = [subtitles[i:i+50] for i in range(0, len(subtitles), 50)]
+    
+    for index in tqdm(range(len(grouped_list))):
+        result_string = ''
+        for subtitle in grouped_list[index]:
+            text = subtitle['text']
+            result_string += text + '\n'
+        trans =translate_google(result_string, "zh-CN","en")
+        new_trans = trans.split('\n')
+        for i, item in enumerate(grouped_list[index]):
+            item['translation'] = new_trans[i]
+        time.sleep(random.randint(2,5))
     return subtitles
 
 def write_srt_file(subtitles, filename):
@@ -133,36 +135,33 @@ def read_srt_files(folder):
 
 
 
-
 if __name__ == '__main__':
-    # 读取srt文件
 
-    # folder_path = r"F:\Downloads\microsoft-azure-database-and-analytics\05 -  Azure SQL Data Warehouse"
-    folder_path = r"F:\Downloads\microsoft-azure-database-and-analytics\04 -   Azure SQL Database"
+    folder_path = r"F:\Downloads\microsoft-azure-database-and-analytics\06 -  Azure Data Lake"
 
     srt_files_en = [os.path.join(root, file) 
                 for root, dirs, files in os.walk(folder_path) 
                 for file in files 
                 if file.endswith('_en.srt')]
-
+    
+    print(len(srt_files_en))
     srt_files_cn = [os.path.join(root, file) 
                 for root, dirs, files in os.walk(folder_path) 
                 for file in files 
                 if file.endswith('_cn.srt')]
-
-    fail_files =[]
-
-    left_join = sorted(set(srt_files_en)-set(srt_files_cn))
-
+    b = [i.replace('_cn','_en') for i in srt_files_cn]
+    left_join = sorted(list(set(srt_files_en)-set(b)))
+    print(len(left_join))
+    fail_files=[]
     for i in left_join:
+        path_parts = i.split('\\')
+        last_folder = path_parts[-1]
+        print(last_folder)
         try:
-            print(i)
             subtitles = parse_srt_file(i)
-            # # # 翻译英文字幕
             subtitles = translate_subtitles_gl(subtitles)
-            # ##写入中英双语字幕
-            # write_srt_file(subtitles, i.replace("_en","_cn"))
+            write_srt_file(subtitles, i.replace("_en","_cn"))
         except:
-            print("翻译失败")
+            print("translate fail")
             fail_files.append(i)
 
