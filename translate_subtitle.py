@@ -137,7 +137,7 @@ def read_srt_files(folder):
 
 if __name__ == '__main__':
 
-    folder_path = r"F:\Downloads\microsoft-azure-database-and-analytics\06 -  Azure Data Lake"
+    folder_path = r"F:\Downloads\microsoft-azure-database-and-analytics\16 - Hadoop crash course for absolute beginners"
 
     srt_files_en = [os.path.join(root, file) 
                 for root, dirs, files in os.walk(folder_path) 
