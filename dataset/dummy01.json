@@ -1,0 +1,28 @@
+{
+	"name": "dummy01",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_raw",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "dummy.csv",
+				"container": "raw"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": null
+		},
+		"schema": [
+			{
+				"name": "id",
+				"type": "String"
+			}
+		]
+	}
+}
