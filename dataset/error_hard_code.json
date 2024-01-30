@@ -1,0 +1,36 @@
+{
+	"name": "error_hard_code",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_raw",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "department_error_date.csv",
+				"container": "raw"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "dep_id",
+				"type": "String"
+			},
+			{
+				"name": "dep_name",
+				"type": "String"
+			},
+			{
+				"name": "date_time",
+				"type": "String"
+			}
+		]
+	}
+}
