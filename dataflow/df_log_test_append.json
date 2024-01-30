@@ -9,7 +9,7 @@
 						"referenceName": "dummy",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "dummy"
 				},
 				{
 					"dataset": {
@@ -53,11 +53,12 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1",
+				"     ignoreNoFilesFound: false) ~> dummy",
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source2",
-				"source1 derive(ADFName = $ADFName,",
+				"     ignoreNoFilesFound: false,",
+				"     wildcardPaths:[($LogFileName)]) ~> source2",
+				"dummy derive(ADFName = $ADFName,",
 				"          PiplineName = $PipelineName,",
 				"          Status = $Status,",
 				"          RunID = $RunID,",
