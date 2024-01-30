@@ -94,6 +94,55 @@
 						"value": "@activity('Get Metadata1').output.exists",
 						"type": "Expression"
 					},
+					"ifFalseActivities": [
+						{
+							"name": "create_log",
+							"type": "ExecuteDataFlow",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataflow": {
+									"referenceName": "df_log",
+									"type": "DataFlowReference",
+									"parameters": {
+										"ADFName": {
+											"value": "'@{pipeline().DataFactory}'",
+											"type": "Expression"
+										},
+										"PipelineName": {
+											"value": "'@{pipeline().Pipeline}'",
+											"type": "Expression"
+										},
+										"Status": "'Succeed'",
+										"RunID": {
+											"value": "'@{pipeline().RunId}'",
+											"type": "Expression"
+										},
+										"TriggerName": {
+											"value": "'@{pipeline().TriggerName}'",
+											"type": "Expression"
+										},
+										"LogFileName": {
+											"value": "'@{variables('LogFileName')}'",
+											"type": "Expression"
+										}
+									}
+								},
+								"compute": {
+									"coreCount": 8,
+									"computeType": "General"
+								},
+								"traceLevel": "Fine"
+							}
+						}
+					],
 					"ifTrueActivities": [
 						{
 							"name": "append_log",
@@ -111,6 +160,29 @@
 								"dataflow": {
 									"referenceName": "df_log_copy_append",
 									"type": "DataFlowReference",
+									"parameters": {
+										"ADFName": {
+											"value": "'@{pipeline().DataFactory}'",
+											"type": "Expression"
+										},
+										"PipelineName": {
+											"value": "'@{pipeline().Pipeline}'",
+											"type": "Expression"
+										},
+										"Status": "'Succeed'",
+										"RunID": {
+											"value": "'@{pipeline().RunId}'",
+											"type": "Expression"
+										},
+										"TriggerName": {
+											"value": "'@{pipeline().TriggerName}'",
+											"type": "Expression"
+										},
+										"LogFileName": {
+											"value": "'@{variables('LogFileName')}'",
+											"type": "Expression"
+										}
+									},
 									"datasetParameters": {
 										"log": {
 											"logFileName": {
