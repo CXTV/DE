@@ -18,7 +18,8 @@
 				"fileName": {
 					"value": "@dataset().LogFileName",
 					"type": "Expression"
-				}
+				},
+				"container": "output"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
