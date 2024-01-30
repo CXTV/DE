@@ -1,0 +1,9 @@
+{
+	"name": "df102lg",
+	"location": "australiaeast",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "591eca97-e3d3-42b5-9f10-99317cfb96f6",
+		"tenantId": "39060ca8-ed99-463a-a389-ca4c4368a6de"
+	}
+}
