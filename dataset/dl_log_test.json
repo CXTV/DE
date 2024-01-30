@@ -1,0 +1,30 @@
+{
+	"name": "dl_log_test",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_output",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"LogFileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().LogFileName",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
