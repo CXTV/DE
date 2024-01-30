@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "DelimitedText2",
+						"referenceName": "dummy",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "DelimitedText1",
+						"referenceName": "dummy",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
@@ -32,11 +32,7 @@
 				"     PipelineName as string",
 				"}",
 				"source(output(",
-				"          ADFName as string,",
-				"          PiplineName as string,",
-				"          Status as string,",
-				"          RunID as string,",
-				"          TriggerName as string",
+				"          aa as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
@@ -46,7 +42,7 @@
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
-				"          {course_id     course_name} as string",
+				"          aa as string",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sink1"
