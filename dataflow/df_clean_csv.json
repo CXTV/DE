@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "dummy",
+						"referenceName": "clean_CourseMaster",
 						"type": "DatasetReference"
 					},
 					"name": "source2"
@@ -30,10 +30,7 @@
 				}
 			],
 			"scriptLines": [
-				"source(output(",
-				"          aa as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
+				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     partitionBy('hash', 1)) ~> source2",
