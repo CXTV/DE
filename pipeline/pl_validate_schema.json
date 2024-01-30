@@ -83,6 +83,17 @@
 						"value": "@equals(activity('get schema root').output.structure,activity('validate schema').output.structure )",
 						"type": "Expression"
 					},
+					"ifFalseActivities": [
+						{
+							"name": "Wait2",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					],
 					"ifTrueActivities": [
 						{
 							"name": "Wait1",
