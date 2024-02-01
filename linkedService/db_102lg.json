@@ -1,0 +1,12 @@
+{
+	"name": "db_102lg",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=dbserver102lg.database.windows.net;initial catalog=db101lg;user id=babypig521",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDA3MTJDODFELThCMjItNDk2OS1COEJCLUM2NDI3ODE2RTUzMF9kZTNkOTE5ZC00MWQ3LTQ5YWMtYjRhMS04OTFhOGRmOGEyZjkiDQp9"
+		}
+	}
+}
