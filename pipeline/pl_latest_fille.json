@@ -100,7 +100,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@greater(activity('Get Metadata1').output.lastModified,variables('PreviousFile'))",
+									"value": "@greater(activity('Get Metadata2').output.lastModified,variables('PreviousFile'))",
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
@@ -116,7 +116,7 @@
 										"typeProperties": {
 											"variableName": "LatestFile",
 											"value": {
-												"value": "@activity('Get Metadata1').output.lastModified",
+												"value": "@formatDateTime(activity('Get Metadata2').output.lastModified)",
 												"type": "Expression"
 											}
 										}
@@ -131,9 +131,9 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
-											"variableName": "fileName",
+											"variableName": "LatestFile",
 											"value": {
-												"value": "@activity('Get Metadata1').output.itemName",
+												"value": "@activity('Get Metadata2').output.itemName",
 												"type": "Expression"
 											}
 										}
