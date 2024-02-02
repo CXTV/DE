@@ -114,9 +114,9 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
-											"variableName": "LatestFile",
+											"variableName": "PreviousFile",
 											"value": {
-												"value": "@formatDateTime(activity('Get Metadata2').output.lastModified)",
+												"value": "@activity('Get Metadata2').output.lastModified",
 												"type": "Expression"
 											}
 										}
@@ -124,7 +124,14 @@
 									{
 										"name": "lastest file name",
 										"type": "SetVariable",
-										"dependsOn": [],
+										"dependsOn": [
+											{
+												"activity": "lastModified",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
 										"policy": {
 											"secureOutput": false,
 											"secureInput": false
