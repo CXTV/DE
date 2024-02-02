@@ -159,9 +159,6 @@
 			"PreviousFile": {
 				"type": "String",
 				"defaultValue": "1900-01-01T05:12:22Z"
-			},
-			"fileName": {
-				"type": "String"
 			}
 		},
 		"annotations": []
